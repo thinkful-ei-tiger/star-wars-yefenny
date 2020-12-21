@@ -1,0 +1,12 @@
+.searchBar{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.searchBar button {
+    background-color: #7579e7;
+    border: royalblue solid 2px;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-weight: 200;
+}

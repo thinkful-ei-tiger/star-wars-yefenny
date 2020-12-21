@@ -1,0 +1,13 @@
+body {
+    background-image: url('./images/star-war.jpg');
+    font-family: 'Orbitron', sans-serif;
+    color: white ;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #54e346;
+}

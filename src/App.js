@@ -1,25 +1,52 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import ListCharacter from './ListCharacter/ListCharacter';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      characthers: [],
+      filter: ''
+    };
+  }
+  componentDidMount() {
+    this.searchCharacther();
+  }
+  searchCharacther = () => {
+    fetch(
+      `https://swapi-thinkful.herokuapp.com/api/people/?search=${this.state.filter}`
+    )
+      .then((res) => res.json())
+      .then((value) => {
+        this.setState({
+          characthers: value.results
+        });
+      });
+    console.log(this.state.characthers);
+  };
+  changeFilter = (name) => {
+    this.setState({
+      filter: name
+    });
+  };
+  render() {
+    return (
+      <div>
+        <header>
+          <h1>Star Wars </h1>
+        </header>
+        <main>
+          <SearchBar
+            changeFilter={this.changeFilter}
+            searchCharacther={this.searchCharacther}
+          />
+          <ListCharacter values={this.state.characthers} />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
